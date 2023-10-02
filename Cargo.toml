@@ -1,0 +1,27 @@
+[package]
+name = "sparrow"
+description = "Sparrow is a simple, lightweight and OpenSource Minecraft Server Panel."
+version = "0.1.0"
+edition = "2021"
+webpage = "https://ammonium.org/sparrow"
+repository = "https://github.com/ammoniumstudios/sparrow"
+documentation = "https://ammonium.org/wiki/sparrow"
+readme = "README.md"
+license = "AGPL-3.0"
+
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[workspace]
+
+members = [
+    "crates/*",
+]
+
+exclude = [
+    "target/",
+]
+
