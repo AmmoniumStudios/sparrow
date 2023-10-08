@@ -999,6 +999,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "sparrow_auth"
+version = "0.1.0"
+
+[[package]]
 name = "sparrow_commons"
 version = "0.1.0"
 
