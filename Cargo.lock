@@ -1007,6 +1007,7 @@ name = "sparrow_docker"
 version = "0.1.0"
 dependencies = [
  "bollard",
+ "futures-util",
  "lazy_static",
  "reqwest",
  "tokio",

@@ -1,13 +1,11 @@
 use bollard::{Docker, image::ListImagesOptions, service::{ImageSummary, ContainerSummary}, container::{ListContainersOptions, StatsOptions, Stats}};
-
-
-use futures::{TryStreamExt, TryFutureExt};
+use futures_util::stream::TryStreamExt;
 use lazy_static::lazy_static;
 lazy_static! {
     pub static ref DOCKER: Docker = Docker::connect_with_local_defaults().unwrap();
 }
 
-async fn list_containers() -> Vec<ContainerSummary> {
+pub async fn list_containers() -> Vec<ContainerSummary> {
     let containers = &DOCKER.list_containers(Some(ListContainersOptions::<String> {
         all: true,
         ..Default::default()
@@ -16,7 +14,7 @@ async fn list_containers() -> Vec<ContainerSummary> {
     containers.clone()
 }
 
-async fn list_images() -> Vec<ImageSummary> {
+pub async fn list_images() -> Vec<ImageSummary> {
 
     let images = &DOCKER.list_images(Some(ListImagesOptions::<String> {
         all: true,
@@ -26,7 +24,7 @@ async fn list_images() -> Vec<ImageSummary> {
     images.clone()
 }
 
-async fn get_container_stats(id: String) -> Vec<Stats> {
+pub async fn get_container_stats(id: String) -> Vec<Stats> {
     let stats = &DOCKER.stats(&id, Some(StatsOptions {
         stream: true,
         ..Default::default()
@@ -37,8 +35,6 @@ async fn get_container_stats(id: String) -> Vec<Stats> {
 
 #[cfg(test)]
 mod tests {
-    use std::collections::HashMap;
-
     use super::*;
 
     #[tokio::test]
